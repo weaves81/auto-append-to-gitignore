@@ -1,0 +1,15 @@
+{
+    "name": "weaves81/auto-git-ignore",
+    "description": "A Composer post-update-cmd script to automatically add Composer managed modules and themes to .gitignore",
+    "authors": [
+        {
+            "name": "Richie McFarlane",
+            "email": "richiemcfarlane@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Weaves81\\": ""
+        }
+    }
+}
