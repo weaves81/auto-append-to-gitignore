@@ -35,7 +35,7 @@ class ComposerPackageInfo
         $this->repositoryManager = $this->composer->getRepositoryManager();
         $this->installationManager = $composer->getInstallationManager();
         $this->gitignore_path = $gitignore_extra['path'];
-        $this->baseDir = $this->NormalizePath(getcwd());
+        $this->baseDir = $this->NormalizePath(getcwd(), $this->gitignore_path);
         $this->requiredTypes = $gitignore_extra['modules'];
     }
 
@@ -66,10 +66,10 @@ class ComposerPackageInfo
      *
      * @return string
      */
-    private function NormalizePath($path)
+    private function NormalizePath($path, $folder)
     {
-        $search  = array('\\', '\\\\', '//', $this->baseDir);
-        $replace = array('/', '/', '/', '');
+        $search  = array('\\', '\\\\', '//', $this->baseDir, $folder);
+        $replace = array('/', '/', '/', '', '');
 
         return trim(str_replace($search, $replace, $path), '/');
     }
@@ -105,7 +105,7 @@ class ComposerPackageInfo
      */
     private function addToPackagesArray($package, $packages)
     {
-        $packagePath = $this->NormalizePath($this->installationManager->getInstallPath($package));
+        $packagePath = $this->NormalizePath($this->installationManager->getInstallPath($package), $this->gitignore_path);
         $packages[$package->getName()]["info"] = $package;
         $packages[$package->getName()]["path"] = $packagePath;
 
