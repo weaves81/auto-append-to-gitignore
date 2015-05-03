@@ -15,10 +15,10 @@ class PostUpdateScript
         $package_array = array();
 
         $extras = $event->getComposer()->getPackage()->getExtra();
-        $gitignore_extras = $extras['git-ignore'];
+        $gitignore_extra = $extras['git-ignore'];
 
-        $composerPackageInfo = new ComposerPackageInfo($gitignore_extras['modules'], $event->getComposer());
-        $git_ignore_editor = new EditGitIgnoreFile(getcwd() . $gitignore_extras['path']);
+        $composerPackageInfo = new ComposerPackageInfo($gitignore_extra, $event->getComposer());
+        $git_ignore_editor = new EditGitIgnoreFile(getcwd() . $gitignore_extra['path']);
 
         $event->getIO()->writeError('<info>Generating .gitignore: </info>', false);
 

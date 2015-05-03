@@ -29,13 +29,13 @@ class ComposerPackageInfo
      * @param array    $gitignore_modules
      * @param Composer $composer
      */
-    public function __construct(Array $gitignore_modules, Composer $composer)
+    public function __construct(Array $gitignore_extra, Composer $composer)
     {
         $this->composer = $composer;
         $this->repositoryManager = $this->composer->getRepositoryManager();
         $this->installationManager = $composer->getInstallationManager();
-        $this->baseDir = $this->NormalizePath(getcwd());
-        $this->requiredTypes = $gitignore_modules;
+        $this->baseDir = $this->NormalizePath(getcwd(), $gitignore_extra['path']);
+        $this->requiredTypes = $gitignore_extra['modules'];
     }
 
     /**
@@ -64,9 +64,9 @@ class ComposerPackageInfo
      *
      * @return string
      */
-    private function NormalizePath($path)
+    private function NormalizePath($path, $folder)
     {
-        $search  = array('\\', '\\\\', '//', $this->baseDir);
+        $search  = array('\\', '\\\\', '//', $this->baseDir.'/'.$folder);
         $replace = array('/', '/', '/', '');
 
         return trim(str_replace($search, $replace, $path), '/');
