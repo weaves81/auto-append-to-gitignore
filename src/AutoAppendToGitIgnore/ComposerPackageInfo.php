@@ -35,7 +35,7 @@ class ComposerPackageInfo
         $this->repositoryManager = $this->composer->getRepositoryManager();
         $this->installationManager = $composer->getInstallationManager();
         $this->gitignore_path = $gitignore_extra['path'];
-        $this->baseDir = $this->NormalizePath(getcwd(), $this->gitignore_path);
+        $this->baseDir = $this->NormalizePath(getcwd(), '');
         $this->requiredTypes = $gitignore_extra['modules'];
     }
 
