@@ -24,6 +24,7 @@ class PostUpdateScript
 
         foreach ($composerPackageInfo->GetModules() as $value) {
             $path = str_replace($gitignore_extra['path'], '', $value["path"]);
+
             $package_array[] = "/" . $path . "/";
         }
         sort($package_array);
