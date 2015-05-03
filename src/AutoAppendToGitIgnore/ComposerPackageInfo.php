@@ -68,10 +68,13 @@ class ComposerPackageInfo
      */
     private function NormalizePath($path, $folder)
     {
-        $search  = array('\\', '\\\\', '//', $this->baseDir, $folder);
-        $replace = array('/', '/', '/', '', '');
+        $search  = array('\\', '\\\\', '//', $this->baseDir);
+        $replace = array('/', '/', '/', '');
+        $path = str_replace($search, $replace, $path);
 
-        return trim(str_replace($search, $replace, $path), '/');
+        $updated_path = str_replace('%'.$folder.'%', '', $path);
+
+        return trim($updated_path, '/');
     }
 
     /**
