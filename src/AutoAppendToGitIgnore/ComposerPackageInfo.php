@@ -26,7 +26,7 @@ class ComposerPackageInfo
     protected $installationManager = "";
 
     /**
-     * @param array    $gitignore_modules
+     * @param array    $gitignore_extra
      * @param Composer $composer
      */
     public function __construct(Array $gitignore_extra, Composer $composer)
@@ -68,7 +68,6 @@ class ComposerPackageInfo
      */
     private function NormalizePath($path, $folder)
     {
-        $folder = str_replace('/.gitignore', '', $folder);
         $search  = array('\\', '\\\\', '//', $this->baseDir.'/'.$folder);
         $replace = array('/', '/', '/', '');
 
