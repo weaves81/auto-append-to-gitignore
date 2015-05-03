@@ -105,8 +105,8 @@ class ComposerPackageInfo
      */
     private function addToPackagesArray($package, $packages)
     {
-        $packagePath = $this->NormalizePath($this->installationManager->getInstallPath($package), $this->gitignore_path);
-        $packagePath = str_replace($this->gitignore_path, '', $packagePath);
+        $path = str_replace($this->gitignore_path, '', $this->installationManager->getInstallPath($package));
+        $packagePath = $this->NormalizePath($path, $this->gitignore_path);
         $packages[$package->getName()]["info"] = $package;
         $packages[$package->getName()]["path"] = $packagePath;
 
