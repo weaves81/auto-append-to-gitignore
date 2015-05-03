@@ -15,7 +15,7 @@ class PostUpdateScript
         $package_array = array();
 
         $extras = $event->getComposer()->getPackage()->getExtra();
-        $gitignore_extras = $extras['gitignore'];
+        $gitignore_extras = $extras['git-ignore'];
 
         $composerPackageInfo = new ComposerPackageInfo($gitignore_extras['modules'], $event->getComposer());
         $git_ignore_editor = new EditGitIgnoreFile(getcwd() . $gitignore_extras['path']);
