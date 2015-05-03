@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Weaves81\\": ""
+            "Weaves81\\": "src/"
         }
     }
 }

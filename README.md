@@ -7,6 +7,16 @@ Composer post-update-cmd script to automatically add Composer managed modules an
 ### Add the following to your composer.json
 Amend GIT_IGNORE_PATH and GIT_IGNORE_MODULES as required
 ```
+"extra": {
+     "git-ignore": {
+          "path": "/wp-content/.gitignore",
+          "modules": [
+              "wordpress-plugin",
+              "wordpress-theme",
+              "wordpress-muplugin"
+          ]
+     }
+},
 "scripts": {
      "post-update-cmd": GIT_IGNORE_PATH="/wp-content/.gitignore"; GIT_IGNORE_MODULES='"wordpress-plugin", "wordpress-theme", "wordpress-muplugin"'; "Weaves81\\AutoAppendToGitIgnore\\PostUpdateScript::Run"
 }
