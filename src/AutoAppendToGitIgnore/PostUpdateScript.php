@@ -23,7 +23,8 @@ class PostUpdateScript
         $event->getIO()->writeError('<info>Generating .gitignore: </info>', false);
 
         foreach ($composerPackageInfo->GetModules() as $value) {
-            $package_array[] = "/" . $value["path"] . "/";
+            $path = str_replace($gitignore_extra['path'], '', $value["path"]);
+            $package_array[] = "/" . $path . "/";
         }
         sort($package_array);
 

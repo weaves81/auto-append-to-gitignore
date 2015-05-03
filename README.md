@@ -9,7 +9,7 @@ Amend GIT_IGNORE_PATH and GIT_IGNORE_MODULES as required
 ```
 "extra": {
      "git-ignore": {
-          "path": "www/wp-content",
+          "path": "/www/wp-content",
           "modules": [
               "wordpress-plugin",
               "wordpress-theme",
