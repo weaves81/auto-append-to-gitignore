@@ -64,7 +64,7 @@ class EditGitIgnoreFile
 
     public function __construct($ignoreFilePath = "/")
     {
-        $this->filePath = $ignoreFilePath."/.gitignore";
+        $this->filePath = $ignoreFilePath.".gitignore";
         $this->checkGitIgnorePermissions();
         $this->parse();
     }
