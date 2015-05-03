@@ -26,16 +26,16 @@ class ComposerPackageInfo
     protected $installationManager = "";
 
     /**
-     * @param          $gitignore_modules
+     * @param array    $gitignore_modules
      * @param Composer $composer
      */
-    public function __construct($gitignore_modules, Composer $composer)
+    public function __construct(Array $gitignore_modules, Composer $composer)
     {
         $this->composer = $composer;
         $this->repositoryManager = $this->composer->getRepositoryManager();
         $this->installationManager = $composer->getInstallationManager();
         $this->baseDir = $this->NormalizePath(getcwd());
-        $this->requiredTypes = $this->setGitignoreRequiredTypes($gitignore_modules);
+        $this->requiredTypes = $gitignore_modules;
     }
 
     /**
@@ -70,27 +70,6 @@ class ComposerPackageInfo
         $replace = array('/', '/', '/', '');
 
         return trim(str_replace($search, $replace, $path), '/');
-    }
-
-    /**
-     * @param $gitignore_modules
-     *
-     * @return string
-     */
-    private function setGitignoreRequiredTypes($gitignore_modules)
-    {
-        $ignore_modules = '';
-        $end            = end($gitignore_modules);
-
-        foreach ($gitignore_modules as $module) {
-            $ignore_modules .= $module;
-
-            if ($module !== $end) {
-                $ignore_modules .= ", ";
-            }
-        }
-
-        return $ignore_modules;
     }
 
     /**
