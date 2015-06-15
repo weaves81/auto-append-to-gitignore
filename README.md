@@ -18,6 +18,7 @@ Amend GIT_IGNORE_PATH and GIT_IGNORE_MODULES as required
      }
 },
 "scripts": {
+     "post-install-cmd": "Weaves81\\AutoAppendToGitIgnore\\PostUpdateScript::Run",
      "post-update-cmd": "Weaves81\\AutoAppendToGitIgnore\\PostUpdateScript::Run"
 }
 ```
