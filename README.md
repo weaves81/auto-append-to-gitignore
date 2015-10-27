@@ -20,8 +20,8 @@ Amend GIT_IGNORE_PATH and GIT_IGNORE_MODULES as required
     }
 },
 "scripts": {
- "post-update-cmd": "Weaves81\\AutoAppendToGitIgnore\\PostUpdateScript::Run"
-},
+     "post-update-cmd": "Weaves81\\AutoAppendToGitIgnore\\PostUpdateScript::Run"
+}
 ```
 Originally based on https://github.com/guru-digital/SSAutoGitIgnore.
 Modified to allow users to set path to .gitignore and set module types
