@@ -31,18 +31,18 @@ class ComposerPackageInfo
      */
     public function __construct(Array $gitignore_extra, Composer $composer)
     {
-        $this->composer = $composer;
-        $this->repositoryManager = $this->composer->getRepositoryManager();
+        $this->composer            = $composer;
+        $this->repositoryManager   = $this->composer->getRepositoryManager();
         $this->installationManager = $composer->getInstallationManager();
-        $this->gitignore_path = $gitignore_extra['path'];
-        $this->baseDir = $this->NormalizePath(getcwd(), '');
-        $this->requiredTypes = $gitignore_extra['modules'];
+        $this->gitignore_path      = $gitignore_extra['path'];
+        $this->baseDir             = $this->normalizePath(getcwd(), '');
+        $this->requiredTypes       = $gitignore_extra['modules'];
     }
 
     /**
      * @return array
      */
-    public function GetModules()
+    public function getModules()
     {
         $packages = array();
 
@@ -66,13 +66,13 @@ class ComposerPackageInfo
      *
      * @return string
      */
-    private function NormalizePath($path, $folder)
+    private function normalizePath($path, $folder)
     {
         $search  = array('\\', '\\\\', '//', $this->baseDir);
         $replace = array('/', '/', '/', '');
-        $path = str_replace($search, $replace, $path);
+        $path    = str_replace($search, $replace, $path);
 
-        $updated_path = str_replace('%'.$folder.'%', '', $path);
+        $updated_path = str_replace('%' . $folder . '%', '', $path);
 
         return trim($updated_path, '/');
     }
@@ -108,7 +108,10 @@ class ComposerPackageInfo
      */
     private function addToPackagesArray($package, $packages)
     {
-        $packagePath = $this->NormalizePath($this->installationManager->getInstallPath($package), $this->gitignore_path);
+        $packagePath                           = $this->normalizePath(
+            $this->installationManager->getInstallPath($package),
+            $this->gitignore_path
+        );
         $packages[$package->getName()]["info"] = $package;
         $packages[$package->getName()]["path"] = $packagePath;
 
